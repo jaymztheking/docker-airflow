@@ -10,9 +10,7 @@ def empty_s3_bucket(**kwargs):
     s3_client = s3_hook.get_conn()
     files = s3_hook.list_keys(bucket_name)
 
-    if files:
-        for file in files:
-            s3_hook.delete_objects(bucket=bucket_name, keys=file)
+    s3_hook.delete_objects(bucket=bucket_name, keys=files)
 
 default_args = {
     'owner': 'airflow',
